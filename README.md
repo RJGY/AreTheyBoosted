@@ -2,6 +2,7 @@
 Is the your/enemy team boosted. The answer is always yes. But with this, you can actually make sure they are boosted.
 
 # TODO
+* LOGGER CAUSE WE NEED IT
 * API connectivity to main league api + opggs one if thats possible
 * Flask for the web app
 * Boosted detection algo
