@@ -19,6 +19,7 @@ more later idk ill think of more stuff to do
 * Playing at different times of the day
 * Win streaking solo more than 5 games in a row
 * OPGG MVP score greater than average over past 5 games
+* KDA & ward score
 * Rank over the course of the season based on past 20 games
 * Current rank vs previous seasons
 
@@ -34,4 +35,12 @@ Weighting will work like this.
 # Scoring
 * Summoner Spell Swapping - 70
 * Recent Role Swapping w/ Games > 10 - +1 point for every %WR above 60%
-* MORE LATER
+* Swapping Champion in role w/ Games >= 10 - +1 point for every %WR above 60%
+* Winstreak with duo over 5 games - 20 points
+* Playing at different times of day - 5 points
+* Winstreak solo over 5 games - 10 points
+* MVP/Ace score on 5 or more games in past 10 games - 10 points
+* KDA/Ward score higher than tier average - 5 points
+* High rank over the course of the season based on past 20 games - 10 points
+* Current rank vs previous season ranks - 5 points
+
