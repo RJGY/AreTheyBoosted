@@ -44,3 +44,6 @@ Weighting will work like this.
 * High rank over the course of the season based on past 20 games - 10 points
 * Current rank vs previous season ranks - 5 points
 
+# ACTIVATE FLASK TO RUN IT WITH THIS
+* venv\Scripts\activate
+* 
