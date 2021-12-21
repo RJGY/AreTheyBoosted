@@ -8,7 +8,7 @@ Is the your/enemy team boosted. The answer is always yes. But with this, you can
 * Boosted detection algo
 * MAKE SURE U ACTUALLY FIND BOOSTED ACCS AND RUN THE NUMBERS SO THAT THE ALGO IS SOMEWHAT CORRECT NOT JUST COMPLETE BULLSHIT
 * Input
-* UI
+* UI - REACT
 more later idk ill think of more stuff to do
 
 # Detection algo
@@ -46,4 +46,5 @@ Weighting will work like this.
 
 # ACTIVATE FLASK TO RUN IT WITH THIS
 * venv\Scripts\activate
-* 
+* $env:FLASK_APP = "flaskr"
+* flask run
