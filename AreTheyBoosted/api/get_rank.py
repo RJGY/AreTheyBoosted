@@ -1,5 +1,4 @@
-from riotwatcher import LolWatcher, ApiError
-
+import set_api as api
 
 def get_rank(name, region):
-    pass
+    # api request here
