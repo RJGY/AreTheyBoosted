@@ -1,10 +1,11 @@
 import api_request as api
 import requests
 import regions
-import selenium
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
 
 def get_rank(name, region):
-    region = regions.region_converter(region)
+    region = regions.region_converter_fullname(region)
     summoner = requests.get("https://{}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{}".format(region, name), headers=api.summoner_request_headers())
     summoner_rank = requests.get("https://{}.api.riotgames.com/lol/league/v4/entries/by-summoner/{}".format(region, summoner.json().get("id")), headers=api.summoner_request_headers())
     for rank_type in summoner_rank.json():
@@ -12,10 +13,10 @@ def get_rank(name, region):
             return "{} {} {} LP".format(rank_type.get("tier"), rank_type.get("rank"), rank_type.get("leaguePoints"))
 
 def get_previous_ranks(name, region):
-    region = regions.region_converter(region)
+    region = regions.region_converter_web(region)
     print(region)
     # get with selenium
-    print(summoner_rank.json())
+    driver = webdriver.Chrome(ChromeDriverManager().install())
 
 
 get_previous_ranks("Reese", "OCE")
