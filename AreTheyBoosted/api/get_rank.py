@@ -3,6 +3,10 @@ import requests
 import regions
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 def get_rank(name, region):
     region = regions.region_converter_fullname(region)
@@ -15,8 +19,21 @@ def get_rank(name, region):
 def get_previous_ranks(name, region):
     region = regions.region_converter_web(region)
     print(region)
+    # start in headless
+    options = Options()
+    options.add_argument("--headless")
+    options.add_argument("--window-size=1920x1080")
     # get with selenium
-    driver = webdriver.Chrome(ChromeDriverManager().install())
+    driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
+    # get opgg
+    driver.get("https://{}.op.gg/summoner/userName={}".format(region, name))
+    # refresh page
+    driver.find_element(By.ID, 'SummonerRefreshButton').click()
+    # get top elements
+    rank_class = driver.find_element(By.CLASS_NAME, 'PastRankList')
+    rank_list = rank_class.find_elements_by_tag_name("li")
+    for x in rank_list:
+        print(x.text)
+    
 
-
-get_previous_ranks("Reese", "OCE")
+get_previous_ranks("Reese", "Oceania")
