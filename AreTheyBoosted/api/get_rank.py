@@ -5,8 +5,8 @@ from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
+
+# TODO: create error handling for incorrect names
 
 def get_rank(name, region):
     region = regions.region_converter_fullname(region)
@@ -28,12 +28,14 @@ def get_previous_ranks(name, region):
     # get opgg
     driver.get("https://{}.op.gg/summoner/userName={}".format(region, name))
     # refresh page
+    # TODO: bug where if u do it too fast, could come up with "Oooops! You just updated it 22 seconds ago, try again in 98 seconds!" alert box.
     driver.find_element(By.ID, 'SummonerRefreshButton').click()
     # get top elements
     rank_class = driver.find_element(By.CLASS_NAME, 'PastRankList')
     rank_list = rank_class.find_elements_by_tag_name("li")
+    previous_ranks = []
     for x in rank_list:
-        print(x.text)
-    
+        previous_ranks.append(x.text)
+    return previous_ranks
 
-get_previous_ranks("Reese", "Oceania")
+print(get_previous_ranks('Reese', 'Oceania'))
