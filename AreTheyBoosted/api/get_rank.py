@@ -18,11 +18,8 @@ def get_rank(name, region):
 
 def get_previous_ranks(name, region):
     region = regions.region_converter_web(region)
-    print(region)
     # start in headless
-    options = Options()
-    options.add_argument("--headless")
-    options.add_argument("--window-size=1920x1080")
+    options = Options().add_argument("--headless").add_argument("--window-size=1920x1080")
     # get with selenium
     driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
     # get opgg
@@ -37,5 +34,3 @@ def get_previous_ranks(name, region):
     for x in rank_list:
         previous_ranks.append(x.text)
     return previous_ranks
-
-print(get_previous_ranks('Reese', 'Oceania'))
