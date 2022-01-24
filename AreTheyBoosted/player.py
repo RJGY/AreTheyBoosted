@@ -7,7 +7,7 @@ class Player:
         self.get_rank()
 
     def get_rank(self):
-        if self.name is None and self.uuid is None:
+        if self.name is None:
             return None
         try: 
             player_api = get_rank.get_rank(self.name, self.region)
@@ -15,4 +15,4 @@ class Player:
             print(ex)
         print(player_api.ranks)
 
-dude = Player('Reese')
+dude = Player('Reese', 'Oceania')
