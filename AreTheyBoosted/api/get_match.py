@@ -1,9 +1,12 @@
+import re
 import regions
 import requests
 import api_request as api
+import get_uuid 
 
 def get_past_matches(name, region, number_of_matches):
-    print(number_of_matches)
-    region = regions.region_converter_web(region)
-    summoner = requests.get("https://{}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{}".format(region, name), headers=api.summoner_request_headers())
+    summoner = get_uuid.get_puuid(name, region)
+    return requests.get("https://{}.api.riotgames.com/lol/match/v5/matches/by-puuid/{}/ids?type=ranked&start=0&count={}".format(regions.region_converter_match(region), summoner, number_of_matches), headers=api.summoner_request_headers())
     
+
+print(get_past_matches('Reese', 'Oceania', '20'))

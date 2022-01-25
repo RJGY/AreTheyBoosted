@@ -1,3 +1,7 @@
+# TODO: Add russia & korea
+# TODO: Add defaults so it doesnt break
+
+
 def region_converter_fullname(region):
     match region:
         case "Oceania":
@@ -43,3 +47,29 @@ def region_converter_web(region):
             return "la"
         case "Latin America South":
             return "la"
+
+
+def region_converter_match(region):
+    match region:
+        case "Oceania":
+            return "americas"
+        case "Latin America South":
+            return "americas"
+        case "Latin America North":
+            return "americas"
+        case "North America":
+            return "americas"
+        case "Brazil":
+            return "americas"
+        case "Korea":
+            return "asia"
+        case "Japan":
+            return "asia"
+        case "Europe Nordic and East":
+            return "europe"
+        case "Europe West":
+            return "europe"
+        case "Turkey":
+            return "europe"
+        case "Russia":
+            return "europe"
