@@ -14,5 +14,3 @@ class Player:
         except Exception as ex:
             print(ex)
         print(player_api.ranks)
-
-dude = Player('Reese', 'Oceania')
