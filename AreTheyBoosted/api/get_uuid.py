@@ -2,7 +2,6 @@ import regions
 import requests
 import api_request as api
 
-# TODO: Error handling for wrong name or region
 
 def get_uuid(name=None, region=None):
     if name is None or region is None:

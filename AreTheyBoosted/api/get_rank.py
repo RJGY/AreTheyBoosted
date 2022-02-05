@@ -16,14 +16,17 @@ def get_rank(name=None, region=None):
     try:
         region = regions.region_converter_fullname(region)
     except Exception:
-        print("Region is incorrect")
+        print("get_rank: Region is incorrect.")
         return 
     try: 
         summoner = requests.get("https://{}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{}".format(region, name), headers=api.summoner_request_headers())
     except Exception:
-        print("Wrong code")
+        print("get_rank: Wrong status code for summoner request.")
         return
-    summoner_rank = requests.get("https://{}.api.riotgames.com/lol/league/v4/entries/by-summoner/{}".format(region, summoner.json().get("id")), headers=api.summoner_request_headers())
+    try:
+        summoner_rank = requests.get("https://{}.api.riotgames.com/lol/league/v4/entries/by-summoner/{}".format(region, summoner.json().get("id")), headers=api.summoner_request_headers())
+    except Exception:
+        print("get_rank: Wrong status code for summoner_rank request.")
     for rank_type in summoner_rank.json():
         if rank_type.get("queueType") == "RANKED_SOLO_5x5":
             return "{} {} {} LP".format(rank_type.get("tier"), rank_type.get("rank"), rank_type.get("leaguePoints"))
@@ -58,5 +61,5 @@ def get_previous_ranks(name=None, region=None):
             previous_ranks.append(x.text)
         return previous_ranks
     except Exception:
-        print("Something happened")
+        print("get_previous_ranks: Something happened in Selenium.")
         return
