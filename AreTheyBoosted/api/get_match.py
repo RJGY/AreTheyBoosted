@@ -15,4 +15,11 @@ def get_match_ids(name=None, region=None, number_of_matches=0):
         print("get_match_ids: Something happened with the response code.")
         return
 
+
+def get_match(matchid=None):
+    if matchid is None:
+        print("Default values are not accepted")
+        return
+
+
 print(get_match_ids('Reese', 'Oceania', '20'))
