@@ -1,7 +1,6 @@
-import re
 import regions
 import requests
-import api_request as api
+import api_request
 import get_uuid 
 
 def get_match_ids(name=None, region=None, number_of_matches=0):
@@ -10,7 +9,7 @@ def get_match_ids(name=None, region=None, number_of_matches=0):
         return
     summoner = get_uuid.get_puuid(name, region)
     try:
-        return requests.get("https://{}.api.riotgames.com/lol/match/v5/matches/by-puuid/{}/ids?type=ranked&start=0&count={}".format(regions.region_converter_match(region), summoner, number_of_matches), headers=api.summoner_request_headers()).json()
+        return requests.get("https://{}.api.riotgames.com/lol/match/v5/matches/by-puuid/{}/ids?type=ranked&start=0&count={}".format(regions.region_converter_match(region), summoner, number_of_matches), headers=api_request.summoner_request_headers()).json()
     except Exception:
         print("get_match_ids: Something happened with the response code.")
         return
