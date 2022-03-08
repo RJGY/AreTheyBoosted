@@ -12,17 +12,15 @@ from selenium.webdriver.common.by import By
 # TODO: custom exception class????
 def get_rank(name=None, region=None):
     if name is None or region is None:
-        return
+        raise Exception("Default values are not accepted. Exiting")
     try:
         region = regions.region_converter_fullname(region)
     except Exception:
-        print("get_rank: Region is incorrect.")
-        return 
+        raise Exception("Incorrect region. Exiting")
     try: 
         summoner = requests.get("https://{}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{}".format(region, name), headers=api.summoner_request_headers())
     except Exception:
-        print("get_rank: Wrong status code for summoner request.")
-        return
+        raise Exception("Incorrect status code. Exiting")
     try:
         summoner_rank = requests.get("https://{}.api.riotgames.com/lol/league/v4/entries/by-summoner/{}".format(region, summoner.json().get("id")), headers=api.summoner_request_headers())
     except Exception:
